@@ -4,7 +4,7 @@ const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
   return (
     <div className={styles.drawer}>
       <div className={styles.drawerRemoveBox}>
-        <h2>Корзина</h2>
+        <h2 className={styles.drawerMainTitle}>Корзина</h2>
         <button onClick={cartStateToggle}>
           <img className={styles.deleteBtn} src="img/icons/remove.svg" alt="" />
         </button>
@@ -34,9 +34,9 @@ const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
                     fill="none"
                     height="24"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     viewBox="0 0 24 24"
                     width="24"
                     xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
         </div>
       ) : (
         <div className={styles.cartEmpty}>
-          <h2>Корзина пуста</h2>
+          <h2 className={styles.emptyCart_title}>Корзина пуста</h2>
           <p>Добавьте товары в корзину</p>
           <img src="img/drawer/cart_empty.svg" alt="" />
         </div>

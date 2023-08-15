@@ -102,3 +102,25 @@
     font-size: 24px;
   }
 }
+//media
+@media (max-width: 820px) {
+  .drawer {
+    height: auto;
+    border: 1px solid rgb(128, 126, 126);
+    border-bottom-left-radius: 10px;
+  }
+  .drawerMainTitle {
+    display: none;
+  }
+  .orderBox {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 820px) {
+  .drawerMainTitle {
+    display: block;
+  }
+  .emptyCart_title {
+    margin-top: 20px;
+  }
+}

@@ -19,9 +19,6 @@ const Header = ({
         <div className={styles.searchMain}>
           <img
             className={styles.searchActive}
-            height={32}
-            width={32}
-            // src="img/icons/search.svg"
             src={
               searchValue === ""
                 ? "img/icons/search.svg"
@@ -36,9 +33,13 @@ const Header = ({
             placeholder="Поиск..."
           />
         </div>
-        <a href="#">
-          <img height={32} width={32} src="img/icons/favorited.svg" alt="" />
-        </a>
+        <button href="#">
+          <img
+            className={styles.header_favorited}
+            src="img/icons/favorited.svg"
+            alt=""
+          />
+        </button>
         <button className={styles.cartBox} onClick={cartStateToggle}>
           <img height={36} width={36} src="img/icons/cart.svg" alt="" />
           <strong>{totalPrice} &#x20bd;</strong>

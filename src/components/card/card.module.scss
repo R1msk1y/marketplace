@@ -9,6 +9,10 @@
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s linear;
+  img {
+    width: 200px;
+    height: 200px;
+  }
   &:hover {
     transform: translateY(3px);
   }
@@ -16,9 +20,10 @@
 .cardDescr {
   font-size: 16px;
   font-weight: bold;
+  white-space: nowrap;
 }
 .cardPrice {
-  margin-top: 20px;
+  margin-top: 5px;
   font-size: 24px;
 }
 .cardBtn {
@@ -38,7 +43,63 @@
     background-color: black;
   }
 }
-.test {
+.svg {
   width: 22px;
   height: 22px;
+}
+
+//media
+@media (max-width: 1702px) {
+  .card {
+    max-width: none;
+  }
+}
+@media (max-width: 1164px) {
+  .card {
+    max-width: none;
+  }
+  .svg {
+    display: none;
+  }
+}
+@media (max-width: 1035px) {
+  .card {
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
+
+@media (max-width: 1035px) {
+  .cardBtn {
+    font-size: 12px;
+  }
+  .cardPrice {
+    margin-top: 5px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 580px) {
+  .card {
+    align-items: center;
+    img {
+      width: 260px;
+      height: 260px;
+    }
+  }
+  .cardDescr {
+    font-size: 22px;
+  }
+  .cardPrice {
+    font-size: 18px;
+    font-weight: normal;
+  }
+  .cardBtn {
+    width: 100%;
+    font-size: 18px;
+    .svg {
+      display: block;
+    }
+  }
 }

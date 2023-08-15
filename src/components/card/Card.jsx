@@ -2,7 +2,7 @@ import styles from "./card.module.scss";
 const Card = ({ id, title, imgUrl, price, addToCart, fullObj }) => {
   return (
     <div className={styles.card}>
-      <img width={220} height={220} src={imgUrl} alt="product" />
+      <img src={imgUrl} alt="product" />
       <p className={styles.cardDescr}>{title}</p>
       <strong className={styles.cardPrice}>{price} &#x20bd;</strong>
       <button
@@ -13,7 +13,7 @@ const Card = ({ id, title, imgUrl, price, addToCart, fullObj }) => {
       >
         <strong>В корзину</strong>
         <svg
-          className={styles.test}
+          className={styles.svg}
           viewBox="0 0 256 256"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -22,9 +22,9 @@ const Card = ({ id, title, imgUrl, price, addToCart, fullObj }) => {
             d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16"
             fill="none"
             stroke="white"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
           />
           <circle
             cx="80"
@@ -32,9 +32,9 @@ const Card = ({ id, title, imgUrl, price, addToCart, fullObj }) => {
             fill="none"
             r="20"
             stroke="white"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
           />
           <circle
             cx="184"
@@ -50,9 +50,9 @@ const Card = ({ id, title, imgUrl, price, addToCart, fullObj }) => {
             d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48"
             fill="none"
             stroke="white"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
           />
         </svg>
       </button>

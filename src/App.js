@@ -5,6 +5,8 @@ import Slider from "./components/slider/Slider";
 import React, { useState } from "react";
 import mainArr from "./data/data";
 import Drawer from "./components/drawer/Drawer";
+import Feedback from "./components/feedback/Feedback";
+import Footer from "./components/footer/Footer";
 
 function App() {
   //Реализация поиска, его логика
@@ -92,7 +94,9 @@ function App() {
           <h2 className="categoryTitle">Орехи</h2>
           <div className="fruitsList">{renderNutsBlock()}</div>
         </div>
+        <Feedback />
       </div>
+      <Footer />
     </div>
   );
 }
