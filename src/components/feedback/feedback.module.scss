@@ -13,7 +13,6 @@
     background-color: #fafafa;
     padding: 20px;
     width: 600px;
-    margin-bottom: 10px;
     border-radius: 10px;
   }
 }
@@ -37,6 +36,15 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+.inputContainer {
+  position: relative;
+}
+.inputCheck {
+  margin: 20px;
+  color: rgb(245, 5, 5);
+  font-weight: bold;
+}
+
 //media
 @media (max-width: 600px) {
   .feedBack_form {
