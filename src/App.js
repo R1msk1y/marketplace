@@ -7,6 +7,7 @@ import mainArr from "./data/data";
 import Drawer from "./components/drawer/Drawer";
 import Feedback from "./components/feedback/Feedback";
 import Footer from "./components/footer/Footer";
+import AppContext from "./context";
 
 function App() {
   //Реализация поиска, его логика
@@ -57,6 +58,7 @@ function App() {
 
   //Удаление из корзины
   const removeOnCart = (obj) => {
+    setStateOrder(false);
     setCartArr((prev) => prev.filter((item) => item.id !== obj.id));
   };
   //Удаление из корзины END
@@ -68,34 +70,40 @@ function App() {
   };
   //Закрытие или скрытие корзины **END
 
+  const [stateOrder, setStateOrder] = useState(false);
+
   return (
     <div className="App">
-      <div className="wrapper">
-        {cartState === false ? null : (
-          <Drawer
-            cartArr={cartArr}
+      <AppContext.Provider value={{ stateOrder, setStateOrder }}>
+        <div className="wrapper">
+          {cartState === false ? null : (
+            <Drawer
+              setCartArr={setCartArr}
+              cartArr={cartArr}
+              cartStateToggle={cartStateToggle}
+              removeOnCart={removeOnCart}
+            />
+          )}
+          <Header
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
             cartStateToggle={cartStateToggle}
-            removeOnCart={removeOnCart}
+            searchFucntion={searchFucntion}
+            cartArr={cartArr}
           />
-        )}
-        <Header
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          cartStateToggle={cartStateToggle}
-          searchFucntion={searchFucntion}
-          cartArr={cartArr}
-        />
-        <Slider />
-        <div className="content">
-          <h2 className="categoryTitle">Фрукты</h2>
-          <div className="fruitsList">{renderFruitsBlock()}</div>
-          <h2 className="categoryTitle">Соки</h2>
-          <div className="fruitsList">{renderJuiceBlock()}</div>
-          <h2 className="categoryTitle">Орехи</h2>
-          <div className="fruitsList">{renderNutsBlock()}</div>
+          <Slider />
+          <div className="content">
+            <h2 className="categoryTitle">Фрукты</h2>
+            <div className="fruitsList">{renderFruitsBlock()}</div>
+            <h2 className="categoryTitle">Соки</h2>
+            <div className="fruitsList">{renderJuiceBlock()}</div>
+            <h2 className="categoryTitle">Орехи</h2>
+            <div className="fruitsList">{renderNutsBlock()}</div>
+          </div>
+          <Feedback />
         </div>
-        <Feedback />
-      </div>
+      </AppContext.Provider>
+
       <Footer />
     </div>
   );

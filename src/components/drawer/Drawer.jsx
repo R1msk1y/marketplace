@@ -1,6 +1,32 @@
+import axios from "axios";
 import styles from "./drawer.module.scss";
-const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
+import React, { useState } from "react";
+import AppContext from "../../context";
+const Drawer = ({ cartArr, setCartArr, cartStateToggle, removeOnCart }) => {
+  const { stateOrder, setStateOrder } = React.useContext(AppContext);
+
+  const [order, setOrder] = useState([]);
   let totalPrice = cartArr.reduce((sum, obj) => obj.price + sum, 0);
+  const sendOrder = () => {
+    if (cartArr.length > 0) {
+      axios
+        .post("https://64dbcbc0593f57e435b16da2.mockapi.io/orders", cartArr)
+        .then(() => {
+          setCartArr([]);
+        })
+        .then(() => {
+          axios
+            .get("https://64dbcbc0593f57e435b16da2.mockapi.io/orders")
+            .then((resp) => {
+              let hhh = resp.data.at(-1);
+              setOrder(hhh);
+            });
+        })
+        .then((resp) => {
+          return setStateOrder(!stateOrder);
+        });
+    }
+  };
   return (
     <div className={styles.drawer}>
       <div className={styles.drawerRemoveBox}>
@@ -14,6 +40,7 @@ const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
         <div className={styles.drawerList_container}>
           <div className={styles.drawerList}>
             {cartArr.map((obj) => {
+              console.log(cartArr);
               return (
                 <div className={styles.listItem}>
                   <img
@@ -55,7 +82,12 @@ const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
             </p>
           </div>
 
-          <button className={styles.orderBtn}>
+          <button
+            onClick={() => {
+              sendOrder();
+            }}
+            className={styles.orderBtn}
+          >
             <span> Оформить заказ</span>
 
             <svg
@@ -75,9 +107,19 @@ const Drawer = ({ cartArr, cartStateToggle, removeOnCart }) => {
         </div>
       ) : (
         <div className={styles.cartEmpty}>
-          <h2 className={styles.emptyCart_title}>Корзина пуста</h2>
-          <p>Добавьте товары в корзину</p>
-          <img src="img/drawer/cart_empty.svg" alt="" />
+          {stateOrder === false ? (
+            <div>
+              <h2 className={styles.emptyCart_title}>Корзина пуста</h2>
+              <p>Добавьте товары в корзину</p>
+              <img src="img/drawer/cart_empty.svg" alt="" />
+            </div>
+          ) : (
+            <div className={styles.orderComplete}>
+              <h2>Спасибо за покупку!</h2>
+              <p>Ваш заказ #{order.id} оформлен. Ждите курьерскую доставку.</p>
+              <img src="img/drawer/orderComplete.png" alt="" />
+            </div>
+          )}
         </div>
       )}
     </div>
